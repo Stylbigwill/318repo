@@ -1,0 +1,33 @@
+buildscript {
+  ext {
+    springCloudVersion = '2.0.2.RELEASE'
+	springBootVersion = '2.1.3.RELEASE'
+  }
+  repositories {
+    mavenLocal()
+  }
+  dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+plugins {
+	id 'org.springframework.boot' version '2.1.3.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.henryschein.dataservices'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+}
+
+
+dependencies {
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jersey', version: springBootVersion
+}
